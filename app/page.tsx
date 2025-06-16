@@ -199,8 +199,7 @@ export default function Home() {
                 width: '8px',
                 height: '8px',
                 backgroundColor: '#22c55e',
-                borderRadius: '50%',
-                animation: 'pulse 2s infinite'
+                borderRadius: '50%'
               }}></div>
               <span style={{ fontSize: '12px', fontWeight: 'bold' }}>AI ACTIVE</span>
             </div>
@@ -233,12 +232,8 @@ export default function Home() {
               borderRadius: '12px',
               border: 'none',
               cursor: 'pointer',
-              boxShadow: '0 8px 20px rgba(102, 126, 234, 0.3)',
-              transition: 'transform 0.2s',
-            }}
-            onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
-            onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
-            >
+              boxShadow: '0 8px 20px rgba(102, 126, 234, 0.3)'
+            }}>
               🚀 Book Demo Call
             </button>
           </div>
@@ -277,7 +272,6 @@ export default function Home() {
                   borderRadius: '15px',
                   border: 'none',
                   cursor: 'pointer',
-                  transition: 'all 0.2s',
                   backgroundColor: selectedTab === tab.id ? '#667eea' : 'transparent',
                   color: selectedTab === tab.id ? 'white' : '#6b7280',
                   boxShadow: selectedTab === tab.id ? '0 4px 12px rgba(102, 126, 234, 0.3)' : 'none'
@@ -328,12 +322,8 @@ export default function Home() {
                   boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255,255,255,0.2)',
-                  transition: 'transform 0.2s',
                   cursor: 'pointer'
-                }}
-                onMouseOver={(e) => e.target.style.transform = 'translateY(-5px)'}
-                onMouseOut={(e) => e.target.style.transform = 'translateY(0)'}
-                >
+                }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                     <div style={{
                       fontSize: '32px',
@@ -397,8 +387,7 @@ export default function Home() {
                       width: '8px',
                       height: '8px',
                       backgroundColor: '#22c55e',
-                      borderRadius: '50%',
-                      animation: 'pulse 2s infinite'
+                      borderRadius: '50%'
                     }}></div>
                     <span style={{ fontSize: '12px', fontWeight: 'bold' }}>LIVE</span>
                   </div>
@@ -435,12 +424,8 @@ export default function Home() {
                       borderRadius: '15px',
                       borderLeft: `4px solid ${item.color}`,
                       backgroundColor: `${item.color}10`,
-                      transition: 'transform 0.2s',
                       cursor: 'pointer'
-                    }}
-                    onMouseOver={(e) => e.target.style.transform = 'scale(1.02)'}
-                    onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
-                    >
+                    }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                         <div style={{ flex: 1 }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '10px' }}>
@@ -450,8 +435,7 @@ export default function Home() {
                               fontWeight: 'bold',
                               borderRadius: '20px',
                               backgroundColor: item.color,
-                              color: 'white',
-                              animation: item.priority === 'URGENT' ? 'pulse 2s infinite' : 'none'
+                              color: 'white'
                             }}>
                               {item.priority}
                             </span>
@@ -469,12 +453,8 @@ export default function Home() {
                           padding: '10px 20px',
                           borderRadius: '10px',
                           border: 'none',
-                          cursor: 'pointer',
-                          transition: 'transform 0.2s'
-                        }}
-                        onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
-                        onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
-                        >
+                          cursor: 'pointer'
+                        }}>
                           Take Action
                         </button>
                       </div>
@@ -515,12 +495,8 @@ export default function Home() {
                     backgroundColor: appointment.status === 'hot' ? '#fee2e2' : 
                                    appointment.status === 'delivery' ? '#dcfce7' : '#f3f4f6',
                     border: `2px solid ${getStatusColor(appointment.status)}20`,
-                    transition: 'transform 0.2s',
                     cursor: 'pointer'
-                  }}
-                  onMouseOver={(e) => e.target.style.transform = 'scale(1.02)'}
-                  onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
-                  >
+                  }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                         <div style={{
@@ -540,8 +516,7 @@ export default function Home() {
                               fontWeight: 'bold',
                               borderRadius: '20px',
                               backgroundColor: getStatusColor(appointment.status),
-                              color: 'white',
-                              animation: appointment.status === 'hot' ? 'pulse 2s infinite' : 'none'
+                              color: 'white'
                             }}>
                               {appointment.type}
                             </span>
@@ -564,12 +539,8 @@ export default function Home() {
                           padding: '8px 16px',
                           borderRadius: '8px',
                           border: 'none',
-                          cursor: 'pointer',
-                          transition: 'transform 0.2s'
-                        }}
-                        onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
-                        onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
-                        >
+                          cursor: 'pointer'
+                        }}>
                           📞 Call
                         </button>
                         <button style={{
@@ -580,12 +551,8 @@ export default function Home() {
                           padding: '8px 16px',
                           borderRadius: '8px',
                           border: 'none',
-                          cursor: 'pointer',
-                          transition: 'transform 0.2s'
-                        }}
-                        onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
-                        onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
-                        >
+                          cursor: 'pointer'
+                        }}>
                           📧 Email
                         </button>
                       </div>
@@ -620,8 +587,6 @@ export default function Home() {
                       fontSize: '14px',
                       outline: 'none'
                     }}
-                    onFocus={(e) => e.target.style.borderColor = '#667eea'}
-                    onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
                   />
                   <button style={{
                     padding: '12px 20px',
@@ -655,12 +620,8 @@ export default function Home() {
                   padding: '25px',
                   boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
                   border: '1px solid rgba(255,255,255,0.2)',
-                  transition: 'transform 0.2s',
                   cursor: 'pointer'
-                }}
-                onMouseOver={(e) => e.target.style.transform = 'translateY(-5px)'}
-                onMouseOut={(e) => e.target.style.transform = 'translateY(0)'}
-                >
+                }}>
                   {/* Lead Header */}
                   <div style={{ marginBottom: '20px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
@@ -673,8 +634,7 @@ export default function Home() {
                           width: '12px',
                           height: '12px',
                           backgroundColor: getUrgencyColor(lead.urgency),
-                          borderRadius: '50%',
-                          animation: lead.urgency === 'urgent' ? 'pulse 2s infinite' : 'none'
+                          borderRadius: '50%'
                         }}></div>
                         <div style={{
                           display: 'flex',
@@ -770,12 +730,8 @@ export default function Home() {
                       padding: '12px',
                       borderRadius: '10px',
                       border: 'none',
-                      cursor: 'pointer',
-                      transition: 'transform 0.2s'
-                    }}
-                    onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
-                    onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
-                    >
+                      cursor: 'pointer'
+                    }}>
                       📞 Call Now
                     </button>
                     <button style={{
@@ -787,12 +743,8 @@ export default function Home() {
                       padding: '12px',
                       borderRadius: '10px',
                       border: 'none',
-                      cursor: 'pointer',
-                      transition: 'transform 0.2s'
-                    }}
-                    onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
-                    onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
-                    >
+                      cursor: 'pointer'
+                    }}>
                       📧 Email
                     </button>
                     <button style={{
@@ -803,12 +755,8 @@ export default function Home() {
                       padding: '12px',
                       borderRadius: '10px',
                       border: 'none',
-                      cursor: 'pointer',
-                      transition: 'transform 0.2s'
-                    }}
-                    onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
-                    onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
-                    >
+                      cursor: 'pointer'
+                    }}>
                       👁️
                     </button>
                   </div>
@@ -850,18 +798,8 @@ export default function Home() {
                     borderRadius: '15px',
                     padding: '25px',
                     backgroundColor: 'white',
-                    transition: 'transform 0.2s, box-shadow 0.2s',
                     cursor: 'pointer'
-                  }}
-                  onMouseOver={(e) => {
-                    e.target.style.transform = 'translateY(-5px)';
-                    e.target.style.boxShadow = '0 12px 40px rgba(0,0,0,0.15)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = 'none';
-                  }}
-                  >
+                  }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
                       <div>
                         <h4 style={{ fontSize: '18px', fontWeight: 'bold', color: '#1f2937', margin: '0 0 5px 0' }}>
@@ -911,17 +849,124 @@ export default function Home() {
                       padding: '12px',
                       borderRadius: '10px',
                       border: 'none',
-                      cursor: 'pointer',
-                      transition: 'background-color 0.2s'
-                    }}
-                    onMouseOver={(e) => e.target.style.backgroundColor = '#1d4ed8'}
-                    onMouseOut={(e) => e.target.style.backgroundColor = '#2563eb'}
-                    >
+                      cursor: 'pointer'
+                    }}>
                       View Interested Leads
                     </button>
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Appointments Tab */}
+        {selectedTab === 'appointments' && (
+          <div style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            padding: '30px',
+            borderRadius: '20px',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
+          }}>
+            <h3 style={{
+              fontSize: '24px',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              margin: '0 0 20px 0',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px'
+            }}>
+              📅 Today's Complete Schedule
+              <span style={{ fontSize: '14px', fontWeight: 'normal', color: '#6b7280' }}>
+                {currentTime.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+              </span>
+            </h3>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              {appointments.map((appointment, index) => (
+                <div key={index} style={{
+                  padding: '25px',
+                  borderRadius: '15px',
+                  backgroundColor: appointment.status === 'hot' ? '#fee2e2' : 
+                                 appointment.status === 'delivery' ? '#dcfce7' : '#f3f4f6',
+                  border: `2px solid ${getStatusColor(appointment.status)}20`,
+                  cursor: 'pointer'
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                      <div style={{
+                        padding: '15px',
+                        borderRadius: '15px',
+                        backgroundColor: 'white',
+                        boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
+                      }}>
+                        <span style={{ fontSize: '20px' }}>🕐</span>
+                      </div>
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '8px' }}>
+                          <span style={{ fontSize: '24px', fontWeight: 'bold', color: '#1f2937' }}>{appointment.time}</span>
+                          <span style={{
+                            padding: '6px 12px',
+                            fontSize: '12px',
+                            fontWeight: 'bold',
+                            borderRadius: '20px',
+                            backgroundColor: getStatusColor(appointment.status),
+                            color: 'white'
+                          }}>
+                            {appointment.type}
+                          </span>
+                          {appointment.status === 'hot' && (
+                            <span style={{ color: '#dc2626', fontSize: '16px', fontWeight: 'bold' }}>🔥 HOT DEAL</span>
+                          )}
+                        </div>
+                        <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#1f2937', margin: '0 0 8px 0' }}>{appointment.customer}</p>
+                        <p style={{ fontSize: '16px', color: '#6b7280', margin: '0 0 8px 0' }}>{appointment.vehicle} • {formatCurrency(appointment.value)}</p>
+                        <p style={{ fontSize: '14px', color: '#9ca3af', margin: 0 }}>{appointment.notes}</p>
+                      </div>
+                    </div>
+                    
+                    <div style={{ display: 'flex', gap: '15px' }}>
+                      <button style={{
+                        backgroundColor: '#059669',
+                        color: 'white',
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        padding: '12px 20px',
+                        borderRadius: '10px',
+                        border: 'none',
+                        cursor: 'pointer'
+                      }}>
+                        📞 Call Customer
+                      </button>
+                      <button style={{
+                        backgroundColor: '#2563eb',
+                        color: 'white',
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        padding: '12px 20px',
+                        borderRadius: '10px',
+                        border: 'none',
+                        cursor: 'pointer'
+                      }}>
+                        📧 Send Email
+                      </button>
+                      <button style={{
+                        backgroundColor: '#7c3aed',
+                        color: 'white',
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        padding: '12px 20px',
+                        borderRadius: '10px',
+                        border: 'none',
+                        cursor: 'pointer'
+                      }}>
+                        📝 Prep Notes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}
@@ -1021,12 +1066,8 @@ export default function Home() {
               borderRadius: '15px',
               border: 'none',
               cursor: 'pointer',
-              boxShadow: '0 8px 20px rgba(255,255,255,0.3)',
-              transition: 'transform 0.2s'
-            }}
-            onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
-            onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
-            >
+              boxShadow: '0 8px 20px rgba(255,255,255,0.3)'
+            }}>
               📞 Schedule Free Demo
             </button>
             <button style={{
@@ -1037,18 +1078,8 @@ export default function Home() {
               fontWeight: 'bold',
               padding: '15px 30px',
               borderRadius: '15px',
-              cursor: 'pointer',
-              transition: 'all 0.2s'
-            }}
-            onMouseOver={(e) => {
-              e.target.style.backgroundColor = 'white';
-              e.target.style.color = '#667eea';
-            }}
-            onMouseOut={(e) => {
-              e.target.style.backgroundColor = 'transparent';
-              e.target.style.color = 'white';
-            }}
-            >
+              cursor: 'pointer'
+            }}>
               🚀 Try Live Demo
             </button>
           </div>
@@ -1069,14 +1100,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* CSS Animations */}
-      <style jsx>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.5; }
-        }
-      `}</style>
     </div>
   );
 }
