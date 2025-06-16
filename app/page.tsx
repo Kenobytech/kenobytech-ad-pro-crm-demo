@@ -105,15 +105,15 @@ export default function Home() {
 
   const getStatusIcon = (status: string) => {
     switch(status) {
-      case 'appointment-today': return <Calendar className="h-4 w-4" />;
-      case 'price-shopping': return <DollarSign className="h-4 w-4" />;
-      case 'repeat-customer': return <Star className="h-4 w-4" />;
-      case 'financing-needed': return <CreditCard className="h-4 w-4" />;
-      default: return <User className="h-4 w-4" />;
-    }
-  };
-
-  return (
+      const getStatusIcon = (status: string) => {
+  switch(status) {
+    case 'appointment-today': return <Calendar className="h-4 w-4" />;
+    case 'price-shopping': return <DollarSign className="h-4 w-4" />;
+    case 'repeat-customer': return <Star className="h-4 w-4" />;
+    case 'financing-needed': return <Target className="h-4 w-4" />;
+    default: return <Users className="h-4 w-4" />;
+  }
+};
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Modern Header with Glass Effect */}
       <div className="bg-white/80 backdrop-blur-lg shadow-xl border-b border-white/20 sticky top-0 z-50">
