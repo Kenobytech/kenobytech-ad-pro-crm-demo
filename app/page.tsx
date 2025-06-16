@@ -168,8 +168,7 @@ export default function Home() {
    <div style={{
   minHeight: '100vh', 
   background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
-}}>
+  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
       
       {/* Header */}
       <div style={{
