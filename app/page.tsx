@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { 
@@ -7,116 +7,52 @@ import {
   Car, CreditCard, Clock, MapPin, Settings 
 } from 'lucide-react';
 
-// Type definitions
-type Lead = {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  score: number;
-  status: 'hot' | 'warm' | 'cold';
-  budget: string;
-  lastContact: string;
-  interestedVehicle: string;
-  tradeIn: string;
-  financing: string;
-  aiInsight: string;
-  source: string;
-  appointmentSet: boolean;
-  appointmentDate: string | null;
-  notes: string;
-  buyingStage: string;
-  followUpPriority: 'URGENT' | 'HIGH' | 'MEDIUM' | 'LOW';
-};
-
-type Metric = {
-  title: string;
-  value: string;
-  change: string;
-  icon: React.ComponentType<{ className?: string }>;
-  color: string;
-};
-
-type AISuggestion = {
-  priority: 'urgent' | 'high' | 'medium' | 'low';
-  action: string;
-  reason: string;
-  impact: string;
-  leadId: number;
-};
-
-type Appointment = {
-  time: string;
-  customer: string;
-  vehicle: string;
-  type: string;
-  status: 'confirmed' | 'hot-lead';
-};
-
-type InventoryItem = {
-  make: string;
-  model: string;
-  year: number;
-  price: string;
-  stock: number;
-  hotLeads: number;
-};
-
-type ChatMessage = {
-  sender: 'user' | 'ai';
-  content: string;
-  timestamp: string;
-};
-
 const CarSalesCRM = () => {
-  // State with proper typing
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'leads' | 'appointments' | 'inventory' | 'ai-coach'>('dashboard');
-  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
-  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [selectedLead, setSelectedLead] = useState(null);
+  const [chatMessages, setChatMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Sample data with proper typing
-  const leads: Lead[] = [
+  // Car dealership specific data
+  const leads = [
     { 
       id: 1, 
-      name: 'Mike Rodriguez',
-      // ... rest of lead properties ...
+      name: 'Mike Rodriguez', 
+      email: 'mike.rodriguez@email.com', 
+      phone: '(555) 123-4567', 
+      score: 92, 
+      status: 'hot', 
+      budget: '$45,000', 
+      lastContact: '2 hours ago', 
+      interestedVehicle: '2024 Honda Accord',
+      tradeIn: '2019 Honda Civic',
+      financing: 'Pre-approved',
+      aiInsight: 'Ready to buy TODAY - financing approved, trade-in valued. Strong urgency signals.',
+      source: 'Website',
+      appointmentSet: true,
+      appointmentDate: 'Today 3:00 PM',
+      notes: 'Looking for family sedan. Has trade-in. Approved for $50k financing.',
+      buyingStage: 'Ready to Purchase',
+      followUpPriority: 'URGENT'
     },
-    // ... other leads ...
+    // ... (other leads remain the same)
   ];
 
-  const metrics: Metric[] = [
+  const metrics = [
     { title: 'Monthly Sales', value: '$485,000', change: '+18%', icon: DollarSign, color: 'text-green-600' },
-    // ... other metrics ...
+    { title: 'Active Leads', value: '127', change: '+23%', icon: Users, color: 'text-blue-600' },
+    { title: 'Conversion Rate', value: '28%', change: '+7%', icon: Target, color: 'text-purple-600' },
+    { title: 'Avg Deal Value', value: '$42,300', change: '+12%', icon: Car, color: 'text-orange-600' }
   ];
 
-  const aiSuggestions: AISuggestion[] = [
-    { 
-      priority: 'urgent', 
-      action: 'Call Mike Rodriguez NOW', 
-      reason: 'Appointment in 2 hours', 
-      impact: '$45,000 deal closing today',
-      leadId: 1
-    },
-    // ... other suggestions ...
-  ];
+  // ... (other data arrays remain the same)
 
-  const todayAppointments: Appointment[] = [
-    { time: '9:00 AM', customer: 'Lisa Martinez', vehicle: '2024 Toyota RAV4', type: 'Test Drive', status: 'confirmed' },
-    // ... other appointments ...
-  ];
-
-  const inventory: InventoryItem[] = [
-    { make: 'Honda', model: 'Accord', year: 2024, price: '$28,500', stock: 12, hotLeads: 3 },
-    // ... other inventory items ...
-  ];
-
-  const simulateCarSalesAI = (message: string): string => {
+  const simulateCarSalesAI = (message: string) => {
     const responses = [
-      "🚗 **Market Analysis**: Based on recent inventory movement...",
-      // ... other responses ...
+      "🚗 **Market Analysis**: Based on recent inventory movement, SUVs are selling 40% faster than sedans this month. Consider promoting Jeep Grand Cherokee to leads with families.",
+      // ... (other responses remain the same)
     ];
     return responses[Math.floor(Math.random() * responses.length)];
   };
@@ -124,7 +60,7 @@ const CarSalesCRM = () => {
   const handleSendMessage = () => {
     if (!newMessage.trim()) return;
     
-    const userMessage: ChatMessage = { 
+    const userMessage = { 
       sender: 'user', 
       content: newMessage, 
       timestamp: new Date().toISOString() 
@@ -134,7 +70,7 @@ const CarSalesCRM = () => {
     setIsTyping(true);
     
     setTimeout(() => {
-      const aiResponse: ChatMessage = { 
+      const aiResponse = { 
         sender: 'ai', 
         content: simulateCarSalesAI(newMessage), 
         timestamp: new Date().toISOString() 
@@ -149,39 +85,656 @@ const CarSalesCRM = () => {
     lead.interestedVehicle.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // ... rest of your helper functions (getStatusColor, getPriorityColor, etc.)
+  const getStatusColor = (status) => {
+    switch(status) {
+      case 'hot': return 'bg-red-100 text-red-800';
+      case 'warm': return 'bg-yellow-100 text-yellow-800';
+      case 'cold': return 'bg-blue-100 text-blue-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const getPriorityColor = (priority) => {
+    switch(priority.toLowerCase()) {
+      case 'urgent': return 'border-l-red-600 bg-red-50';
+      case 'high': return 'border-l-orange-500 bg-orange-50';
+      case 'medium': return 'border-l-yellow-500 bg-yellow-50';
+      case 'low': return 'border-l-green-500 bg-green-50';
+      default: return 'border-l-gray-500 bg-gray-50';
+    }
+  };
+
+  // Add missing appointment status colors
+  const getAppointmentStatusColor = (status) => {
+    switch(status) {
+      case 'hot-lead': return 'bg-red-500 text-white';
+      case 'confirmed': return 'bg-blue-500 text-white';
+      default: return 'bg-gray-500 text-white';
+    }
+  };
+
+  // Add useEffect for keyboard accessibility
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && selectedLead) {
+        setSelectedLead(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedLead]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      {/* Header and other JSX remains the same */}
-      {/* Just ensure all props passed to components are type-safe */}
-      
-      {/* Example of typed props in JSX */}
-      {selectedLead && (
-        <LeadDetailModal 
-          lead={selectedLead}
-          onClose={() => setSelectedLead(null)}
-        />
-      )}
-    </div>
-  );
-};
+      {/* Header */}
+      <header className="bg-white shadow-lg border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center space-x-3">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-lg">
+                <Car className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">AutoDealer Pro</h1>
+                <p className="text-sm text-gray-500">AI-Powered Car Sales Management</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2 bg-green-100 text-green-800 px-3 py-1 rounded-full">
+                <Zap className="h-4 w-4" />
+                <span className="text-sm font-medium">AI Sales Assistant Active</span>
+              </div>
+              <button 
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                aria-label="Add new lead"
+              >
+                <Plus className="h-4 w-4 inline mr-2" />
+                New Lead
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
 
-// Additional typed component example
-const LeadDetailModal = ({ 
-  lead, 
-  onClose 
-}: { 
-  lead: Lead; 
-  onClose: () => void 
-}) => {
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      {/* Modal content using the typed lead prop */}
-      <h2>{lead.name}</h2>
-      <p>{lead.interestedVehicle}</p>
-      {/* ... */}
-      <button onClick={onClose}>Close</button>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {/* Navigation Tabs */}
+        <nav className="mb-6">
+          <ul className="flex space-x-8">
+            {[
+              { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+              { id: 'leads', label: 'Leads', icon: Users },
+              { id: 'appointments', label: 'Today\'s Schedule', icon: Calendar },
+              { id: 'inventory', label: 'Hot Inventory', icon: Car },
+              { id: 'ai-coach', label: 'AI Sales Coach', icon: Bot }
+            ].map(tab => (
+              <li key={tab.id}>
+                <button
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                    activeTab === tab.id 
+                      ? 'bg-blue-100 text-blue-700' 
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                  aria-current={activeTab === tab.id ? 'page' : undefined}
+                >
+                  <tab.icon className="h-4 w-4 mr-2" />
+                  {tab.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Dashboard Tab */}
+        {activeTab === 'dashboard' && (
+          <div className="space-y-6">
+            {/* Metrics Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {metrics.map((metric, index) => (
+                <article key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-600">{metric.title}</p>
+                      <p className="text-2xl font-bold text-gray-900 mt-1">{metric.value}</p>
+                      <p className={`text-sm mt-1 ${metric.color}`}>{metric.change} from last month</p>
+                    </div>
+                    <div className={`p-3 rounded-lg ${metric.color} bg-opacity-10`}>
+                      <metric.icon className={`h-6 w-6 ${metric.color}`} />
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {/* AI Suggestions - Priority Actions */}
+            <section className="bg-white rounded-xl shadow-lg p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold text-gray-900 flex items-center">
+                  <Lightbulb className="h-5 w-5 text-yellow-500 mr-2" />
+                  AI Priority Actions - Next 2 Hours
+                </h2>
+                <span className="text-sm text-green-600 font-medium">Updated 2 minutes ago</span>
+              </div>
+              <div className="space-y-3">
+                {aiSuggestions.map((suggestion, index) => (
+                  <article 
+                    key={index} 
+                    className={`p-4 rounded-lg border-l-4 ${getPriorityColor(suggestion.priority)}`}
+                  >
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-gray-900 text-lg">{suggestion.action}</h3>
+                        <p className="text-sm text-gray-600 mt-1">{suggestion.reason}</p>
+                        <p className="text-sm font-medium text-green-600 mt-2">{suggestion.impact}</p>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <span className={`px-3 py-1 text-xs font-bold rounded-full ${
+                          suggestion.priority === 'urgent' ? 'bg-red-500 text-white animate-pulse' :
+                          suggestion.priority === 'high' ? 'bg-orange-500 text-white' :
+                          suggestion.priority === 'medium' ? 'bg-yellow-500 text-white' :
+                          'bg-green-500 text-white'
+                        }`}>
+                          {suggestion.priority.toUpperCase()}
+                        </span>
+                        <button 
+                          className="bg-blue-600 text-white px-3 py-1 rounded text-xs hover:bg-blue-700"
+                          onClick={() => {
+                            const lead = leads.find(l => l.id === suggestion.leadId);
+                            if (lead) setSelectedLead(lead);
+                          }}
+                        >
+                          Take Action
+                        </button>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            {/* Today's Appointments */}
+            <section className="bg-white rounded-xl shadow-lg p-6">
+              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <Calendar className="h-5 w-5 text-blue-600 mr-2" />
+                Today's Appointments
+              </h2>
+              <div className="space-y-4">
+                {todayAppointments.map((appointment, index) => (
+                  <article 
+                    key={index} 
+                    className={`flex items-center justify-between p-4 rounded-lg border ${
+                      appointment.status === 'hot-lead' ? 'bg-red-50 border-red-200' : 'bg-gray-50 border-gray-200'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className={`p-2 rounded-lg ${
+                        appointment.status === 'hot-lead' ? 'bg-red-100' : 'bg-blue-100'
+                      }`}>
+                        <Clock className={`h-4 w-4 ${
+                          appointment.status === 'hot-lead' ? 'text-red-600' : 'text-blue-600'
+                        }`} />
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-900">{appointment.time} - {appointment.customer}</p>
+                        <p className="text-sm text-gray-600">{appointment.vehicle} • {appointment.type}</p>
+                      </div>
+                    </div>
+                    {appointment.status === 'hot-lead' && (
+                      <span className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse">
+                        HOT LEAD
+                      </span>
+                    )}
+                  </article>
+                ))}
+              </div>
+            </section>
+          </div>
+        )}
+
+        {/* Leads Tab */}
+        {activeTab === 'leads' && (
+          <div className="space-y-6">
+            {/* Search and Filter */}
+            <section className="bg-white p-4 rounded-xl shadow-lg">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4 flex-1">
+                  <div className="flex-1 relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <input
+                      type="text"
+                      placeholder="Search leads by name or vehicle..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      aria-label="Search leads"
+                    />
+                  </div>
+                  <button 
+                    className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                    aria-label="Filter leads"
+                  >
+                    <Filter className="h-4 w-4 mr-2" />
+                    Filter
+                  </button>
+                </div>
+                <div className="text-sm text-gray-500 ml-4">
+                  {filteredLeads.length} active leads
+                </div>
+              </div>
+            </section>
+
+            {/* Leads Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {filteredLeads.map(lead => (
+                <article 
+                  key={lead.id} 
+                  className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow p-6"
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900">{lead.name}</h3>
+                      <p className="text-blue-600 font-medium">{lead.interestedVehicle}</p>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(lead.status)}`}>
+                        {lead.status.toUpperCase()}
+                      </span>
+                      <div className="flex items-center bg-gray-100 px-2 py-1 rounded-full">
+                        <Star className="h-3 w-3 text-yellow-500 mr-1" />
+                        <span className="text-xs font-medium">{lead.score}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <span className="text-gray-500">Budget:</span>
+                        <span className="font-medium text-green-600 ml-2">{lead.budget}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-500">Financing:</span>
+                        <span className="font-medium ml-2">{lead.financing}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="text-sm">
+                      <span className="text-gray-500">Trade-in:</span>
+                      <span className="font-medium ml-2">{lead.tradeIn}</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-500">Last contact: {lead.lastContact}</span>
+                      <span className="text-gray-500">Source: {lead.source}</span>
+                    </div>
+
+                    {lead.appointmentSet && (
+                      <div className="bg-green-50 p-2 rounded-lg">
+                        <div className="flex items-center text-sm text-green-800">
+                          <Calendar className="h-4 w-4 mr-2" />
+                          <span className="font-medium">Appointment: {lead.appointmentDate}</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+                    <div className="flex items-start">
+                      <Bot className="h-4 w-4 text-blue-600 mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-sm text-blue-900 font-medium">{lead.aiInsight}</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex space-x-2">
+                    <button 
+                      onClick={() => setSelectedLead(lead)}
+                      className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                    >
+                      View Details
+                    </button>
+                    <button 
+                      className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm"
+                      aria-label={`Call ${lead.name}`}
+                    >
+                      <Phone className="h-4 w-4" />
+                    </button>
+                    <button 
+                      className="bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors text-sm"
+                      aria-label={`Email ${lead.name}`}
+                    >
+                      <Mail className="h-4 w-4" />
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Appointments Tab */}
+        {activeTab === 'appointments' && (
+          <section className="bg-white rounded-xl shadow-lg p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+              <Calendar className="h-6 w-6 text-blue-600 mr-3" />
+              Today's Schedule - {new Date().toLocaleDateString()}
+            </h2>
+            <div className="space-y-4">
+              {todayAppointments.map((appointment, index) => (
+                <article 
+                  key={index} 
+                  className={`p-6 rounded-lg border-l-4 ${
+                    appointment.status === 'hot-lead' ? 'bg-red-50 border-l-red-500' : 'bg-blue-50 border-l-blue-500'
+                  }`}
+                >
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <div className="flex items-center space-x-3 mb-2">
+                        <time className="text-2xl font-bold text-gray-900">{appointment.time}</time>
+                        <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                          getAppointmentStatusColor(appointment.status)
+                        }`}>
+                          {appointment.type}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900">{appointment.customer}</h3>
+                      <p className="text-gray-600">{appointment.vehicle}</p>
+                      {appointment.status === 'hot-lead' && (
+                        <p className="text-red-600 font-medium mt-2">⚡ High priority - ready to purchase!</p>
+                      )}
+                    </div>
+                    <div className="flex space-x-2">
+                      <button 
+                        className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+                        aria-label={`Call ${appointment.customer}`}
+                      >
+                        Call Customer
+                      </button>
+                      <button 
+                        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+                        aria-label={`Prepare details for ${appointment.customer}`}
+                      >
+                        Prep Details
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Inventory Tab */}
+        {activeTab === 'inventory' && (
+          <section className="bg-white rounded-xl shadow-lg p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+              <Car className="h-6 w-6 text-blue-600 mr-3" />
+              Hot Inventory - Vehicles with Active Interest
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {inventory.map((vehicle, index) => (
+                <article key={index} className="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        {vehicle.year} {vehicle.make} {vehicle.model}
+                      </h3>
+                      <p className="text-2xl font-bold text-green-600">{vehicle.price}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm text-gray-500">In Stock</p>
+                      <p className="text-lg font-semibold">{vehicle.stock} units</p>
+                    </div>
+                  </div>
+                  <div className="bg-orange-50 p-3 rounded-lg">
+                    <div className="flex items-center justify-between">
+                      <span className="text-orange-800 font-medium">Hot Leads Interested:</span>
+                      <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                        {vehicle.hotLeads} leads
+                      </span>
+                    </div>
+                  </div>
+                  <button 
+                    className="w-full mt-4 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                    aria-label={`View leads interested in ${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+                  >
+                    View Interested Leads
+                  </button>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* AI Coach Tab */}
+        {activeTab === 'ai-coach' && (
+          <section className="bg-white rounded-xl shadow-lg h-96 flex flex-col">
+            <div className="p-4 border-b bg-gradient-to-r from-blue-50 to-purple-50">
+              <h2 className="text-lg font-semibold text-gray-900 flex items-center">
+                <Bot className="h-5 w-5 text-blue-600 mr-2" />
+                AI Sales Coach
+              </h2>
+              <p className="text-sm text-gray-500 mt-1">Get real-time coaching on leads, pricing, objection handling, and closing techniques</p>
+            </div>
+            
+            <div className="flex-1 p-4 overflow-y-auto">
+              {chatMessages.length === 0 ? (
+                <div className="text-center text-gray-500 mt-8">
+                  <Bot className="h-12 w-12 mx-auto text-gray-300 mb-4" />
+                  <p className="font-medium">Your AI Sales Coach is ready to help!</p>
+                  <div className="mt-4 space-y-2 text-sm">
+                    <p>Try asking:</p>
+                    <div className="bg-gray-50 p-3 rounded-lg space-y-1">
+                      <p>"How should I handle Mike Rodriguez's appointment today?"</p>
+                      <p>"What's the best approach for Sarah Chen's price objection?"</p>
+                      <p>"Show me financing options for Jennifer Wilson"</p>
+                      <p>"Which leads should I prioritize this afternoon?"</p>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {chatMessages.map((message, index) => (
+                    <div 
+                      key={index} 
+                      className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                    >
+                      <div 
+                        className={`max-w-xs lg:max-w-md px-4 py-3 rounded-lg ${
+                          message.sender === 'user' 
+                            ? 'bg-blue-600 text-white' 
+                            : 'bg-gray-100 text-gray-900 border'
+                        }`}
+                        role={message.sender === 'user' ? 'status' : 'article'}
+                      >
+                        <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                        <time 
+                          className="text-xs opacity-70 mt-1 block" 
+                          dateTime={message.timestamp}
+                        >
+                          {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        </time>
+                      </div>
+                    </div>
+                  ))}
+                  {isTyping && (
+                    <div className="flex justify-start">
+                      <div className="bg-gray-100 px-4 py-3 rounded-lg border">
+                        <div className="flex space-x-1">
+                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+            
+            <div className="p-4 border-t">
+              <div className="flex space-x-2">
+                <input
+                  type="text"
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                  placeholder="Ask your AI sales coach anything..."
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  aria-label="Type your message to AI coach"
+                />
+                <button
+                  onClick={handleSendMessage}
+                  disabled={!newMessage.trim()}
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+                  aria-label="Send message"
+                >
+                  <Send className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </section>
+        )}
+      </main>
+
+      {/* Lead Detail Modal */}
+      {selectedLead && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="lead-details-title"
+        >
+          <div className="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <h2 id="lead-details-title" className="text-2xl font-bold text-gray-900">{selectedLead.name}</h2>
+                  <p className="text-blue-600 font-medium text-lg">{selectedLead.interestedVehicle}</p>
+                  <p className="text-gray-500">Lead Score: {selectedLead.score}/100</p>
+                </div>
+                <button 
+                  onClick={() => setSelectedLead(null)}
+                  className="text-gray-400 hover:text-gray-600 text-2xl"
+                  aria-label="Close lead details"
+                >
+                  &times;
+                </button>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Contact Info */}
+                <section>
+                  <h3 className="font-semibold text-gray-900 border-b pb-2">Contact Information</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center">
+                      <Mail className="h-4 w-4 text-gray-400 mr-3" />
+                      <span className="text-sm">{selectedLead.email}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Phone className="h-4 w-4 text-gray-400 mr-3" />
+                      <span className="text-sm">{selectedLead.phone}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <MapPin className="h-4 w-4 text-gray-400 mr-3" />
+                      <span className="text-sm">Source: {selectedLead.source}</span>
+                    </div>
+                  </div>
+                </section>
+
+                {/* Vehicle & Financial Info */}
+                <section>
+                  <h3 className="font-semibold text-gray-900 border-b pb-2">Vehicle & Financial Details</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <span className="text-sm text-gray-500">Budget:</span>
+                      <span className="ml-2 font-medium text-green-600">{selectedLead.budget}</span>
+                    </div>
+                    <div>
+                      <span className="text-sm text-gray-500">Trade-in:</span>
+                      <span className="ml-2 font-medium">{selectedLead.tradeIn}</span>
+                    </div>
+                    <div>
+                      <span className="text-sm text-gray-500">Financing:</span>
+                      <span className="ml-2 font-medium">{selectedLead.financing}</span>
+                    </div>
+                    <div>
+                      <span className="text-sm text-gray-500">Buying Stage:</span>
+                      <span className="ml-2 font-medium text-blue-600">{selectedLead.buyingStage}</span>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              {/* Appointment Info */}
+              {selectedLead.appointmentSet && (
+                <section className="mt-6 bg-green-50 p-4 rounded-lg">
+                  <h3 className="font-semibold text-green-800 mb-2 flex items-center">
+                    <Calendar className="h-4 w-4 mr-2" />
+                    Scheduled Appointment
+                  </h3>
+                  <p className="text-green-700 font-medium">{selectedLead.appointmentDate}</p>
+                </section>
+              )}
+
+              {/* Notes */}
+              <section className="mt-6">
+                <h3 className="font-semibold text-gray-900 mb-2">Notes</h3>
+                <p className="text-sm text-gray-700 bg-gray-50 p-3 rounded-lg">{selectedLead.notes}</p>
+              </section>
+              
+              {/* AI Insights */}
+              <section className="mt-6 bg-blue-50 p-4 rounded-lg">
+                <div className="flex items-start">
+                  <Bot className="h-5 w-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-sm font-medium text-blue-900 mb-1">AI Sales Insight</h3>
+                    <p className="text-sm text-blue-800">{selectedLead.aiInsight}</p>
+                    <div className="mt-3">
+                      <span className="text-xs text-blue-700 font-medium">Next Action Priority: </span>
+                      <span className={`px-2 py-1 text-xs font-bold rounded-full ${
+                        selectedLead.followUpPriority === 'URGENT' ? 'bg-red-500 text-white' :
+                        selectedLead.followUpPriority === 'HIGH' ? 'bg-orange-500 text-white' :
+                        'bg-yellow-500 text-white'
+                      }`}>
+                        {selectedLead.followUpPriority}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Action Buttons */}
+              <div className="flex space-x-3 mt-6">
+                <button 
+                  className="flex-1 bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium"
+                  aria-label={`Call ${selectedLead.name}`}
+                >
+                  📞 Call Now
+                </button>
+                <button 
+                  className="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                  aria-label={`Email ${selectedLead.name}`}
+                >
+                  📧 Send Email
+                </button>
+                <button 
+                  className="flex-1 bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 transition-colors font-medium"
+                  aria-label={`Schedule appointment with ${selectedLead.name}`}
+                >
+                  📅 Schedule Appointment
+                </button>
+                <button 
+                  className="bg-gray-100 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-200 transition-colors"
+                  aria-label="Lead settings"
+                >
+                  <Settings className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
