@@ -167,7 +167,7 @@ const CarSalesCRM = () => {
     { make: 'Jeep', model: 'Grand Cherokee', year: 2024, price: '$38,500', stock: 6, hotLeads: 4 }
   ];
 
-  const simulateCarSalesAI = (message) => {
+  const simulateCarSalesAI = (message: string) => {
     const responses = [
       "🚗 **Market Analysis**: Based on recent inventory movement, SUVs are selling 40% faster than sedans this month. Consider promoting Jeep Grand Cherokee to leads with families.",
       "💰 **Financing Alert**: Interest rates dropped 0.25% this week. Perfect time to re-contact leads who were concerned about monthly payments. I've identified 12 leads to target.",
