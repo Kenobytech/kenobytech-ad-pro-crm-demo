@@ -1,11 +1,11 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { Car, Users, DollarSign, Target, Bot, Calendar, Phone, Mail, TrendingUp, Zap, Star, Clock, AlertCircle, CheckCircle, ArrowUp, Eye, MessageSquare, Filter, Search, Bell, Settings, BarChart3, PieChart, Activity } from 'lucide-react';
+import { Car, Users, DollarSign, Target, Bot, Calendar, Phone, Mail, TrendingUp, Zap, Star, Clock, AlertCircle, CheckCircle, ArrowUp, Eye, MessageSquare, Filter, Search, Bell, Settings, BarChart3, PieChart, Activity, CreditCard, User } from 'lucide-react';
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState('dashboard');
-  const [animatedValue, setAnimatedValue] = useState(0);
+  const [animatedValue, setAnimatedValue] = useState(0);         
 
   // Animate numbers on load
   useEffect(() => {
