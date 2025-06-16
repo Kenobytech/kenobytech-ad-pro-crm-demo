@@ -49,7 +49,7 @@ const CarSalesCRM = () => {
 
   // ... (other data arrays remain the same)
 
-  const simulateCarSalesAI = (message) => {
+  const simulateCarSalesAI = (message: string) => {
     const responses = [
       "🚗 **Market Analysis**: Based on recent inventory movement, SUVs are selling 40% faster than sedans this month. Consider promoting Jeep Grand Cherokee to leads with families.",
       // ... (other responses remain the same)
