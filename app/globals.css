@@ -2,32 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  }
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-@layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
-  }
-  
-  .glass {
-    @apply bg-white/10 backdrop-blur-lg border border-white/20;
-  }
-  
-  .card-hover {
-    @apply hover:shadow-2xl hover:-translate-y-1 transition-all duration-300;
-  }
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* Custom animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+* {
+  box-sizing: border-box;
 }
-
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
