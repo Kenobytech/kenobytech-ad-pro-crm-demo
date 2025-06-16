@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -165,7 +165,11 @@ export default function Home() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)' }}>
+    <div style={{ 
+      minHeight: '100vh', 
+      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+    }}>
       {/* Header */}
       <div style={{
         backgroundColor: 'white',
@@ -327,10 +331,12 @@ export default function Home() {
                   <div key={index} style={{
                     padding: '16px',
                     borderRadius: '8px',
-                    borderLeft: '4px solid transparent'
-                  }}
-                  className={getPriorityColor(suggestion.priority)}
-                  >
+                    borderLeft: '4px solid',
+                    borderLeftColor: suggestion.priority === 'high' ? '#ef4444' : 
+                                   suggestion.priority === 'medium' ? '#eab308' : '#22c55e',
+                    backgroundColor: suggestion.priority === 'high' ? '#fef2f2' : 
+                                   suggestion.priority === 'medium' ? '#fffbeb' : '#f0fdf4'
+                  }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                       <div style={{ flex: 1 }}>
                         <p style={{ fontSize: '16px', fontWeight: '500', color: '#111827', margin: '0 0 4px 0' }}>{suggestion.action}</p>
@@ -484,11 +490,15 @@ export default function Home() {
                       <p style={{ fontSize: '14px', color: '#6b7280', margin: 0 }}>{lead.company}</p>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span className={getStatusColor(lead.status)} style={{
+                      <span style={{
                         padding: '2px 8px',
                         fontSize: '12px',
                         fontWeight: '500',
-                        borderRadius: '9999px'
+                        borderRadius: '9999px',
+                        backgroundColor: lead.status === 'hot' ? '#fee2e2' : 
+                                       lead.status === 'warm' ? '#fef3c7' : '#dbeafe',
+                        color: lead.status === 'hot' ? '#991b1b' :
+                               lead.status === 'warm' ? '#92400e' : '#1e40af'
                       }}>
                         {lead.status.toUpperCase()}
                       </span>
@@ -628,14 +638,3 @@ export default function Home() {
                       </div>
                     </div>
                   ))}
-                  {isTyping && (
-                    <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                      <div style={{
-                        backgroundColor: '#f3f4f6',
-                        padding: '12px 16px',
-                        borderRadius: '12px'
-                      }}>
-                        <div style={{ display: 'flex', gap: '4px' }}>
-                          <div style={{ width: '8px', height: '8px', backgroundColor: '#6b7280', borderRadius: '50%' }}></div>
-                          <div style={{ width: '8px', height: '8px', backgroundColor: '#6b7280', borderRadius: '50%' }}></div>
-                          <div style={{ width: '8px', height:
