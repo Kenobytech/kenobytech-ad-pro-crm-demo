@@ -169,14 +169,14 @@ const CarSalesCRM = () => {
 
   const simulateCarSalesAI = (message) => {
     const responses = [
-      "🚗 **Market Analysis**: Based on recent inventory movement, SUVs are selling 40% faster than sedans this month. Consider promoting Jeep Grand Cherokee to leads with families.",
-      "💰 **Financing Alert**: Interest rates dropped 0.25% this week. Perfect time to re-contact leads who were concerned about monthly payments. I've identified 12 leads to target.",
-      "🎯 **Hot Lead Alert**: Mike Rodriguez just viewed the Honda Accord listing 3 times in the last hour. His appointment is today at 3 PM - he's ready to buy!",
-      "📊 **Performance Insight**: Your conversion rate is 28% (industry average is 18%). Your strong follow-up game is paying off. Keep focusing on test drives within 48 hours of first contact.",
-      "🔥 **Urgent Action**: David Thompson's trade-in value just increased by $2,000 due to market conditions. Call him immediately - this could close the deal!",
-      "📈 **Sales Opportunity**: Jennifer Wilson mentioned credit concerns. Our new graduate program launched this week with 0% down options. Perfect timing to re-engage her.",
-      "🚙 **Inventory Match**: New Ford F-150 arrived today that matches exactly what 3 of your hot leads requested. Send inventory alerts immediately to David Thompson, Mark Foster, and Steve Wilson.",
-      "⏰ **Timing Intelligence**: Sarah Chen typically responds to messages between 6-8 PM based on her engagement patterns. Schedule your follow-up call accordingly for maximum impact."
+      "🚗 Market Analysis: Based on recent inventory movement, SUVs are selling 40% faster than sedans this month. Consider promoting Jeep Grand Cherokee to leads with families.",
+      "💰 Financing Alert: Interest rates dropped 0.25% this week. Perfect time to re-contact leads who were concerned about monthly payments. I've identified 12 leads to target.",
+      "🎯 Hot Lead Alert: Mike Rodriguez just viewed the Honda Accord listing 3 times in the last hour. His appointment is today at 3 PM - he's ready to buy!",
+      "📊 Performance Insight: Your conversion rate is 28% (industry average is 18%). Your strong follow-up game is paying off. Keep focusing on test drives within 48 hours of first contact.",
+      "🔥 Urgent Action: David Thompson's trade-in value just increased by $2,000 due to market conditions. Call him immediately - this could close the deal!",
+      "📈 Sales Opportunity: Jennifer Wilson mentioned credit concerns. Our new graduate program launched this week with 0% down options. Perfect timing to re-engage her.",
+      "🚙 Inventory Match: New Ford F-150 arrived today that matches exactly what 3 of your hot leads requested. Send inventory alerts immediately to David Thompson, Mark Foster, and Steve Wilson.",
+      "⏰ Timing Intelligence: Sarah Chen typically responds to messages between 6-8 PM based on her engagement patterns. Schedule your follow-up call accordingly for maximum impact."
     ];
     return responses[Math.floor(Math.random() * responses.length)];
   };
