@@ -2,10 +2,29 @@
 
 import React, { useState, useEffect } from 'react';
 import { Search, Plus, Mail, Phone, Calendar, TrendingUp, Users, DollarSign, Target, Bot, Zap, MessageSquare, BarChart3, Filter, ChevronDown, Star, Send, Lightbulb, Car, CreditCard, Clock, MapPin, Settings } from 'lucide-react';
-
+type Lead = {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  score: number;
+  status: string;
+  budget: string;
+  lastContact: string;
+  interestedVehicle: string;
+  tradeIn: string;
+  financing: string;
+  aiInsight: string;
+  source: string;
+  appointmentSet: boolean;
+  appointmentDate: string | null;
+  notes: string;
+  buyingStage: string;
+  followUpPriority: string;
+};
 const CarSalesCRM = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [selectedLead, setSelectedLead] = useState(null);
+  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [chatMessages, setChatMessages] = useState<{sender: string; content: string; timestamp: Date}[]>([]);
   const [newMessage, setNewMessage] = useState<string>('');
   const [isTyping, setIsTyping] = useState(false);
