@@ -205,7 +205,7 @@ const CarSalesCRM = () => {
     lead.interestedVehicle.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: string) => {
     switch(status) {
       case 'hot': return 'bg-red-100 text-red-800';
       case 'warm': return 'bg-yellow-100 text-yellow-800';
@@ -214,7 +214,7 @@ const CarSalesCRM = () => {
     }
   };
 
-  const getPriorityColor = (priority) => {
+  const getPriorityColor = (priority: string) => {
     switch(priority) {
       case 'urgent': return 'border-l-red-600 bg-red-50';
       case 'high': return 'border-l-orange-500 bg-orange-50';
