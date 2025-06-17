@@ -6,7 +6,6 @@ import { Search, Plus, Mail, Phone, Calendar, TrendingUp, Users, DollarSign, Tar
 const CarSalesCRM = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [selectedLead, setSelectedLead] = useState(null);
-  const [chatMessages, setChatMessages] = useState([]);
   const [chatMessages, setChatMessages] = useState<{sender: string; content: string; timestamp: Date}[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
