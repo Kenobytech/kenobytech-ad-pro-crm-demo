@@ -1,4 +1,4 @@
-'use state';
+'use client'
 
 import React, { useState, useEffect } from 'react';
 import { Search, Plus, Mail, Phone, Calendar, TrendingUp, Users, DollarSign, Target, Bot, Zap, MessageSquare, BarChart3, Filter, ChevronDown, Star, Send, Lightbulb, Car, CreditCard, Clock, MapPin, Settings } from 'lucide-react';
