@@ -7,6 +7,7 @@ const CarSalesCRM = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [selectedLead, setSelectedLead] = useState(null);
   const [chatMessages, setChatMessages] = useState<{sender: string; content: string; timestamp: Date}[]>([]);
+  const [newMessage, setNewMessage] = useState<string>('');
   const [isTyping, setIsTyping] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
